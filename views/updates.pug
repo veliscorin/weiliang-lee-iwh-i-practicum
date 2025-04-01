@@ -1,0 +1,93 @@
+doctype html
+html
+  head
+    title= title
+    style.
+      /* General Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #e0f7fa;
+        padding: 20px;
+        text-align: center;
+      }
+      /* Form Styling */
+      form {
+        width: 600px;
+        margin: auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        display: flex;
+        justify-content: space-between;  /* Distribute space between label and input */
+        margin-bottom: 20px;
+      }
+
+      label {
+        width: 30%;                  /* Label takes 30% of the row */
+        text-align: left;            /* Align text to the left */
+        font-weight: bold;
+      }
+
+      input, select {
+        width: 65%;                  /* Input takes 65% of the row */
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;      /* Ensure padding doesn’t affect width */
+      }
+
+      button {
+        background-color: #00796b;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      button:hover {
+        background-color: #004d40;
+      }
+
+      a {
+        display: block;
+        margin-top: 15px;
+        color: #00796b;
+        text-decoration: none;
+      }
+  
+  body
+    h1 🌱 Update or Create an Aquatic Plant Record
+    p Fill out the form below to add a new aquatic plant to the CRM.
+
+    form(action="/create-cobj" method="POST")
+      .form-group
+        label(for="name") Plant Name:
+        input(type="text" id="name" name="name" placeholder="e.g. Rotala Rotundifolia" required)
+
+      .form-group
+        label(for="placement") Plant Placement:
+        select(id="placement" name="placement" required)
+          option(value="" disabled selected) Please select a placement
+          option(value="foreground") Foreground
+          option(value="midground") Midground
+          option(value="background") Background
+          option(value="floating") Floating
+
+      .form-group
+        label(for="type") Plant Type:
+        select(id="type" name="type" required)
+          option(value="" disabled selected) Please select a plant type
+          option(value="stem") Stem
+          option(value="carpeting") Carpeting
+          option(value="epiphyte") Epiphyte
+
+      button(type="submit") 🌊 Save Plant Record
+
+    a(href="/") ← Return to the homepage
