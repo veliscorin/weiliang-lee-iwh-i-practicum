@@ -30,6 +30,48 @@ app.get('/update-cobj', (req, res) => {
 
 // * Code for Route 3 goes here
 
+app.post('/create-cobj', async (req, res) => {
+    // Get form data from req.body
+    const { name, placement, type } = req.body;
+
+    // Construct the data to create a record of custom object
+    const updateData = {
+        properties: {
+            "name": name,             // Custom property for "name"
+            "placement": placement,   // Custom property for "placement"
+            "type": type              // Custom property for "type"
+        }
+    };
+
+    // Init URLS
+    const updateCustomObjectUrl = `https://api.hubapi.com/crm/v3/objects/2-166735240`;
+
+    // HubSpot API headers with Authorization
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    };
+
+    try {
+        // Make the PATCH request to HubSpot to update the custom object
+        const response = await axios.post(updateCustomObjectUrl, updateData, { headers });
+
+        // Redirect to the homepage (or wherever you want)
+        res.redirect('/');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error updating custom object');
+    }
+});
+
+//Redirect if url is hit for whatever reason
+app.get('/create-cobj', (req, res) => {
+    res.redirect('/');  // ✅ Instantly redirect to the homepage
+});
+
+
+
+
 /** 
 * * This is sample code to give you a reference for how you should structure your calls. 
 
