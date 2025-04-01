@@ -1,0 +1,55 @@
+doctype html
+html
+  head
+    title= title
+    style.
+      /* General Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #e0f7fa;
+        padding: 20px;
+        text-align: center;
+      }
+      table {
+        width: 650px;
+        margin: 20px auto;
+        border-collapse: collapse;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+      th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tr:nth-child(odd) {
+        background-color: white;    // White for odd rows
+      }
+  body
+    h1 Database of Aquatic Plants
+
+    // Add link to go to the update page
+    a(href='/update-cobj') Add to this table
+
+    // Table to display custom object data
+    table
+      thead
+        tr
+          th Plant Name
+          th Placement
+          th Type
+      tbody
+        each obj in customObjects
+          tr
+            td= obj.properties.name
+            td= obj.properties.placement
+            td= obj.properties.type
+
+    // You can add additional rows for other custom properties
